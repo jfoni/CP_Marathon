@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(){
+    int N;
+    cin >> N;
+
+    vector<string> grid(N);
+    for (int i = 0; i < N; i++) cin >> grid[i];
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j + 5 < N; j++) {
+            int white = 0;
+            for (int k = 0; k < 6; k++) if (grid[i][j + k] == '.') white++;
+            if (white <= 2) {
+                cout << "Yes";
+                return;
+            }
+        }
+    }
+
+    for (int i = 0; i + 5 < N; i++) {
+        for (int j = 0; j < N; j++) {
+            int white = 0;
+            for (int k = 0; k < 6; k++) if (grid[i + k][j] == '.') white++;
+            if (white <= 2) {
+                cout << "Yes";
+                return;
+            }
+        }
+    }
+
+    for (int i = 0; i + 5 < N; i++) {
+        for (int j = 0; j + 5 < N; j++) {
+            int white = 0;
+            for (int k = 0; k < 6; k++) if (grid[i + k][j + k] == '.') white++;
+            if (white <= 2) {
+                cout << "Yes";
+                return;
+            }
+        }
+    }
+
+    for (int i = 0; i + 5 < N; i++) {
+        for (int j = 5; j < N; j++) {
+            int white = 0;
+            for (int k = 0; k < 6; k++) if (grid[i + k][j - k] == '.') white++;
+            if (white <= 2) {
+                cout << "Yes";
+                return;
+            }
+        }
+    }
+
+    cout << "No";
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    solve();
+    return 0;
+}
