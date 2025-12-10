@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+void solve(){
+    int n;
+    cin >> n;
+ 
+    unordered_map<string, int> mp;
+ 
+    while (n--) {
+        string name;
+        cin >> name;
+ 
+        if (mp.find(name) == mp.end()) {
+            cout << "OK\n";
+            mp[name] = 0; 
+        }
+        else {
+            int count = mp[name] + 1;
+            string newName = name + to_string(count);
+ 
+            while (mp.find(newName) != mp.end()) {
+                count++;
+                newName = name + to_string(count);
+            }
+ 
+            cout << newName << "\n";
+ 
+            mp[name] = count;       
+            mp[newName] = 0;        
+        }
+    }
+}
+ 
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+     
+        solve();
+    
+    return 0;
+}
