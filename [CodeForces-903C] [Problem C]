@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ 
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+ 
+    for(auto &i: arr){
+        cin >> i;
+    }
+ 
+    map<int ,int>f;
+ 
+    for(auto i: arr){
+        f[i]++;
+    }
+ 
+   int mx=INT_MIN;
+   for(auto i: f){
+    if(i.second > mx)
+        mx=i.second;
+   }
+   cout << mx <<endl;
+ 
+}
