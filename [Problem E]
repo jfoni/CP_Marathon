@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+map<pair<int,int>, string> cm;
+void solve()
+{
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        int c1, c2;
+        string name;
+        cin >> c1 >> c2 >> name;
+        cm[{c1, c2}] = name; 
+    }
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve(); 
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int q1, q2;
+        cin >> q1 >> q2;
+        cout << cm[{q1, q2}] << "\n";
+    }
+
+    return 0;
+}
