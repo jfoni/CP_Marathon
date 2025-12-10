@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(){
+    int N;
+    cin >> N;
+
+    map<ll, ll> freq;
+
+    for (int i = 0; i < N; i++) {
+        ll x;
+        cin >> x;
+        freq[x]++;
+    }
+
+    ll removeCount = 0;
+
+    for (auto it : freq) {
+        ll x = it.first;
+        ll count = it.second;
+
+        if (count == x) {
+        }
+        else if (count > x) {
+            removeCount += (count - x);
+        }
+        else {  
+            removeCount += count;
+        }
+    }
+
+    cout << removeCount << endl;
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+    return 0;
+}
