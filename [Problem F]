@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+
+void solve(){
+    int n, x; 
+    cin >> n >> x;
+    queue<pair<int, bool>> q;
+    priority_queue<int> pq;
+    int time = 0;
+
+    for(int i=0; i<n; i++){
+        int num; cin >> num;
+        bool f = false;
+        if(i == x) f = true;
+        else false;
+        q.push({num, f});
+        pq.push(num);
+    }
+
+    while(true){
+        int priority = q.front().first;
+        bool f = q.front().second;
+
+        if(priority == pq.top()){
+            time++;
+            q.pop();
+            pq.pop();
+            if(f){
+                cout << time << "\n";
+                break;
+            }
+        } else {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+}
+
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int t;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
