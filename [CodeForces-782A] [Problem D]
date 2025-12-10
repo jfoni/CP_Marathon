@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(){
+    int n;
+    cin >> n;
+
+    vector<int> a(2 * n);
+    for(int i = 0; i < 2 * n; i++){
+        cin >> a[i];
+    }   
+
+    vector<bool> T(n + 1, false);
+    
+    int curr = 0;
+    int mx = 0;
+
+    for (int i = 0; i < 2 * n; i++) {
+        int x = a[i];
+
+        if (T[x] == false) {
+            T[x] = true;
+            curr++;
+        } else {
+            T[x] = false;
+            curr--;
+        }
+
+        if (curr > mx) {
+            mx = curr;
+        }
+    }
+
+    cout << mx << endl;
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+    return 0;
+}
