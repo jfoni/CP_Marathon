@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(){
+    int N, M;
+    cin >> N >> M;
+
+    map<string, string> chefC;    
+    map<string, int> chefV;         
+    map<string, int> countryVotes;      
+
+    for (int i = 0; i < N; i++) {
+        string chef, country;
+        cin >> chef >> country;
+        chefC[chef] = country;
+    }
+
+    for (int i = 0; i < M; i++) {
+        string chef;
+        cin >> chef;
+        chefV[chef]++;
+        countryVotes[chefC[chef]]++;
+    }
+
+    string bestCountry = "";
+    int maxCountryVotes = -1;
+
+    map<string, int>::iterator it1;
+    for (it1 = countryVotes.begin(); it1 != countryVotes.end(); it1++) {
+        string country = it1->first;
+        int votes = it1->second;
+
+        if (votes > maxCountryVotes ||
+            (votes == maxCountryVotes && country < bestCountry)) {
+            maxCountryVotes = votes;
+            bestCountry = country;
+        }
+    }
+
+    string bestChef = "";
+    int maxChefVotes = -1;
+
+    map<string, int>::iterator it2;
+    for (it2 = chefV.begin(); it2 != chefV.end(); it2++) {
+        string chef = it2->first;
+        int votes = it2->second;
+
+        if (votes > maxChefVotes ||
+            (votes == maxChefVotes && chef < bestChef)) {
+            maxChefVotes = votes;
+            bestChef = chef;
+        }
+    }
+
+    cout << bestCountry <<endl;
+    cout << bestChef <<endl;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    solve();
+    return 0;
+}
