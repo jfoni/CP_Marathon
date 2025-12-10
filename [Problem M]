@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(){
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> A(N+1);       
+    vector<int> pre(N+1,0);  
+
+    for(int i=1; i<=N; i++) {
+        cin >> A[i];
+        if(A[i] == 0)
+            pre[i] = pre[i-1] + 1;
+        else
+            pre[i] = pre[i-1];
+    }
+
+    while(Q--) {
+        int L, R;
+        cin >> L >> R;
+
+        int zero_count = pre[R] - pre[L-1];
+        int total = R - L + 1;
+        int one_count = total - zero_count;
+
+        if(zero_count > one_count) cout << 0 << "\n";
+        else cout << 1 << "\n";
+    }
+
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    solve();
+    return 0;
+}
